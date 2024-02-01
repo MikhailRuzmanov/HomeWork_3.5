@@ -9,7 +9,7 @@ import ru.hogwarts.school.service.StudentService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("student")
+@RequestMapping("/student")
 public class StudentController {
 
     private final StudentService studentService;
@@ -43,7 +43,7 @@ public class StudentController {
         return ResponseEntity.ok(foundStudent);
 
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
@@ -52,8 +52,8 @@ public class StudentController {
     public ResponseEntity findStudentByAge(@RequestParam int age){
         return ResponseEntity.ok(studentService.findStudentByAge(age));
     }
-    @GetMapping("betweenAge")
-    public ResponseEntity AgeBetween(@RequestParam int min, @RequestParam int max){
+    @GetMapping("/betweenAge")
+    public ResponseEntity<Collection<Student>> ageBetween(@RequestParam int min, @RequestParam int max){
         return ResponseEntity.ok(studentService.findByAgeBetween(min, max));
     }
 
