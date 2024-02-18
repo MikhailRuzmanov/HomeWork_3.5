@@ -45,14 +45,14 @@ public class FacultyController {
         return ResponseEntity.ok(foundFaculty);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteFaculty(@PathVariable long id) {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("color")
-    public ResponseEntity findFacultyByColor(@RequestParam String color) {
+    @GetMapping("/color")
+    public ResponseEntity<?> findFacultyByColor(@RequestParam String color) {
         return ResponseEntity.ok(facultyService.findFacultyByColor(color));
     }
 
