@@ -45,15 +45,29 @@ public class FacultyController {
         return ResponseEntity.ok(foundFaculty);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteFaculty(@PathVariable long id) {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("color")
-    public ResponseEntity findFacultyByColor(@RequestParam String color) {
+    @GetMapping("/color")
+    public ResponseEntity<?> findFacultyByColor(@RequestParam String color) {
         return ResponseEntity.ok(facultyService.findFacultyByColor(color));
     }
 
+    @GetMapping("/getLongestNameFaculty")
+    public ResponseEntity<String> getLongestNameFaculty() {
+        return ResponseEntity.ok(facultyService.getLongestNameFaculty());
+    }
+
+    @GetMapping("/summa")
+    public ResponseEntity<Integer> getSummaTime() {
+        return ResponseEntity.ok(facultyService.summa());
+
+    }
+    @GetMapping("/summaParallel")
+    public ResponseEntity<Integer> getSummaTimeParallel(){
+        return ResponseEntity.ok(facultyService.summaParallel());
+    }
 }
