@@ -74,4 +74,7 @@ public class AvatarService {
         PageRequest pageRequest = PageRequest.of(number - 1, size);
         return avatarRepository.findAll(pageRequest).getContent();
     }
+
+
+    
 }
