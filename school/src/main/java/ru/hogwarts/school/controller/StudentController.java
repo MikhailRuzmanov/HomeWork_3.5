@@ -77,5 +77,13 @@ public class StudentController {
     public ResponseEntity<Double> middleAgeByStudentsByStream(){
         return ResponseEntity.ok(studentService.middleAgeByStudentsByStream());
     }
+    @GetMapping("/print-parallel")
+    public void  getNameStudent(){
+        studentService.printNameParallel();
+    }
+    @GetMapping("/print-synchronized")
+    public void  getNameStudentSynh(){
+        studentService.printNameParallelSynh();
+    }
 
 }

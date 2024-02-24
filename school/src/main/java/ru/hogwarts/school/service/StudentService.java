@@ -9,6 +9,7 @@ import ru.hogwarts.school.repositories.StudentRepository;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +42,7 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public Collection<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         logger.info("Info message - get All Students");
         return studentRepository.findAll();
     }
@@ -82,6 +83,40 @@ public class StudentService {
                 .mapToDouble(Student::getAge)
                 .average()
                 .orElse(0);
+    }
+
+    public void printName(int i){
+        System.out.println(getAllStudents().get(i).getName());
+    }
+
+    public void printNameParallel(){
+        printName(0);
+        new Thread(()->{
+            printName(2);
+            printName(3);
+        }).start();new Thread(()->{
+            printName(4);
+            printName(5);
+        }).start();
+
+        printName(1);
+
+    }
+    public synchronized void printNameSynh(int i){
+        System.out.println(getAllStudents().get(i).getName());
+    }
+    public void printNameParallelSynh(){
+        printNameSynh(0);
+        new Thread(()->{
+            printNameSynh(2);
+            printNameSynh(3);
+        }).start();new Thread(()->{
+            printNameSynh(4);
+            printNameSynh(5);
+        }).start();
+
+        printNameSynh(1);
+
     }
 
 }
